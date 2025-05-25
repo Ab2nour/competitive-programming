@@ -11,7 +11,8 @@ entree = entree.split("\n")
 
 ## ---------- Données ----------
 from queue import PriorityQueue
-MAX_ZOINXIEN = 200#000
+
+MAX_ZOINXIEN = 200  # 000
 n = 6
 
 deja_vu_x = [0 for i in range(MAX_ZOINXIEN)]
@@ -30,7 +31,7 @@ file = PriorityQueue()
 
 # pour les x
 for i in range(n):
-    ecart = abs(zoinxiens[0][0] - zoinxiens[i][0]) # clé de la file de priorité
+    ecart = abs(zoinxiens[0][0] - zoinxiens[i][0])  # clé de la file de priorité
     x = zoinxiens[i][0]
     y = zoinxiens[i][1]
     tentacule = zoinxiens[i][2]
@@ -40,7 +41,7 @@ for i in range(n):
 
 # pour les y
 for i in range(n):
-    ecart = abs(zoinxiens[0][1] - zoinxiens[i][1]) # clé de la file de priorité
+    ecart = abs(zoinxiens[0][1] - zoinxiens[i][1])  # clé de la file de priorité
     x = zoinxiens[i][0]
     y = zoinxiens[i][1]
     tentacule = zoinxiens[i][2]
@@ -50,7 +51,7 @@ for i in range(n):
 
 # pour les tentacules
 for i in range(n):
-    ecart = abs(zoinxiens[0][2] - zoinxiens[i][2]) # clé de la file de priorité
+    ecart = abs(zoinxiens[0][2] - zoinxiens[i][2])  # clé de la file de priorité
     x = zoinxiens[i][0]
     y = zoinxiens[i][1]
     tentacule = zoinxiens[i][2]
@@ -60,7 +61,7 @@ for i in range(n):
 
 # pour les âges
 for i in range(n):
-    ecart = abs(zoinxiens[0][3] - zoinxiens[i][3]) # clé de la file de priorité
+    ecart = abs(zoinxiens[0][3] - zoinxiens[i][3])  # clé de la file de priorité
     x = zoinxiens[i][0]
     y = zoinxiens[i][1]
     tentacule = zoinxiens[i][2]
@@ -82,21 +83,22 @@ for i in range(n):
 
 ## ---------- Fonctions ----------
 def marque_age(n):
-    """ Fonction pour marquer les cases adjacentes à l'âge (plus ou moins 5 ans). """
+    """Fonction pour marquer les cases adjacentes à l'âge (plus ou moins 5 ans)."""
     if n < 5:
         for i in range(0, (n + 1) + 5):
             deja_vu_age[i] = 1
 
     elif n > MAX_ZOINXIEN - 5:
-        for i in range(n-5, MAX_ZOINXIEN + 1):
+        for i in range(n - 5, MAX_ZOINXIEN + 1):
             deja_vu_age[i] = 1
 
     else:
-        for i in range(n-5, (n + 1) + 5):
+        for i in range(n - 5, (n + 1) + 5):
             deja_vu_age[i] = 1
 
+
 def deja_vu_zoinxien(zox):
-    """ Fonction pour marquer tous les attributs d'un Zoinxien comme déjà vus. """
+    """Fonction pour marquer tous les attributs d'un Zoinxien comme déjà vus."""
     x = zox[0]
     y = zox[1]
     tentacule = zox[2]
@@ -109,8 +111,9 @@ def deja_vu_zoinxien(zox):
     marque_age(age)
     deja_vu[identifiant] = 1
 
+
 def est_ami(zox):
-    """ Fonction pour savoir si un Zoinxien est ami, selon les données actuelles. """
+    """Fonction pour savoir si un Zoinxien est ami, selon les données actuelles."""
     x = zox[0]
     y = zox[1]
     tentacule = zox[2]
@@ -120,7 +123,6 @@ def est_ami(zox):
         return True
     else:
         return False
-
 
 
 ## ---------- Code ----------
@@ -140,5 +142,3 @@ while not file.empty():
 
 
 print(nb_amis)
-
-

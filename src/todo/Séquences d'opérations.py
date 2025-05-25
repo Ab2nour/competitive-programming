@@ -1,7 +1,7 @@
 a, b, c, d = map(int, input().split())
 n, m = map(int, input().split())
 
-deja_visite = [0 for i in range(10**5+1)]
+deja_visite = [0 for i in range(10**5 + 1)]
 
 file = [n]
 
@@ -37,7 +37,7 @@ while file:
 
     if d != 0:
         resultat = nombre / d
-        if isinstance(resultat, int): # resultat entier
+        if isinstance(resultat, int):  # resultat entier
             if resultat == m:
                 print(1)
                 exit()

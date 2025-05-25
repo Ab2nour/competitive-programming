@@ -1,5 +1,7 @@
 import sys
+
 sys.setrecursionlimit(10**8)
+
 
 class Noeud:
     def __init__(self, nom, pere=None, fils=None):
@@ -21,6 +23,7 @@ class Noeud:
             compteur += 1
         return compteur
 
+
 def to_the_top(noeud):
     return noeud.to_the_top()
 
@@ -32,10 +35,10 @@ liste_pour_noeuds = list(map(int, input().split()))
 noeuds = [0 for i in range(N)]
 
 for i in range(N):
-    noeuds[i] = Noeud(str(i+1))
+    noeuds[i] = Noeud(str(i + 1))
 
 for i in range(N):
-    indice = liste_pour_noeuds[i]-1
+    indice = liste_pour_noeuds[i] - 1
     if indice > 0:
         noeuds[i].pere = noeuds[indice]
         noeuds[i].pere.fils.append(noeuds[i])
@@ -43,9 +46,9 @@ for i in range(N):
 max = 0
 
 for i in range(N):
-    if not noeuds[i].fils: # noeuds[i] n'a pas de fils
+    if not noeuds[i].fils:  # noeuds[i] n'a pas de fils
         a = noeuds[i].to_the_top()
         if a > max:
             max = a
 print(max)
-#3 3 7 3 6 7 0 0
+# 3 3 7 3 6 7 0 0

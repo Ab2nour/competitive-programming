@@ -19,12 +19,12 @@ spectacles.sort()
 tab_somme = [0 for i in range(S)]
 tab_somme[0] = spectacles[0][1]
 for i in range(1, S):
-    tab_somme[i] = tab_somme[i-1] + spectacles[i][1]
+    tab_somme[i] = tab_somme[i - 1] + spectacles[i][1]
 
 
-somme_jusqua_n = lambda n : tab_somme[n-1]/n
+somme_jusqua_n = lambda n: tab_somme[n - 1] / n
 
-tab_moyennes = [somme_jusqua_n(i+1) for i in range(S)]
+tab_moyennes = [somme_jusqua_n(i + 1) for i in range(S)]
 
 max = tab_moyennes[0]
 indice_max = 0

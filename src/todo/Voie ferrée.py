@@ -16,11 +16,13 @@
 
 import sys
 
-def distance(x1, y1, x2, y2):
-    return (x2-x1)**2+(y2-y1)**2
 
-vect = lambda x, y : (y[0]-x[0], y[1]-x[1])
-prod_sca = lambda x, y : x[0]*y[0]+x[1]*y[1]
+def distance(x1, y1, x2, y2):
+    return (x2 - x1) ** 2 + (y2 - y1) ** 2
+
+
+vect = lambda x, y: (y[0] - x[0], y[1] - x[1])
+prod_sca = lambda x, y: x[0] * y[0] + x[1] * y[1]
 
 x_a, y_a, x_b, y_b = map(int, input().split())
 
@@ -35,9 +37,10 @@ nb_point = int(input())
 max = 0
 x_max, y_max = x_a, y_a
 
+
 def distance_tour(x, y):
     AP = vect(a, (x, y))
-    AH = prod_sca(AB, AP)/dist_ab
+    AH = prod_sca(AB, AP) / dist_ab
     dist_AP = distance(x_a, y_a, x, y)
     print("AP", dist_AP)
     print("AH", AH)
@@ -46,11 +49,12 @@ def distance_tour(x, y):
 
     return dist
 
-for _,description in zip(range(nb_point), sys.stdin):
+
+for _, description in zip(range(nb_point), sys.stdin):
     x, y = map(int, description.split())
 
     AP = vect(a, (x, y))
-    AH = prod_sca(AB, AP)/dist_ab
+    AH = prod_sca(AB, AP) / dist_ab
     dist_AP = distance(x_a, y_a, x, y)
 
     dist = dist_AP**2 - AH**2
@@ -61,4 +65,3 @@ for _,description in zip(range(nb_point), sys.stdin):
 
 
 print(x_max, y_max)
-

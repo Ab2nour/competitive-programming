@@ -1,5 +1,6 @@
 def main():
     import sys
+
     sys.setrecursionlimit(10**9)
 
     N, A = map(int, input().split())
@@ -8,9 +9,9 @@ def main():
         def __init__(self, nom):
             self.nom = nom
 
-    graphe = [Noeud(i) for i in range(N+1)]
+    graphe = [Noeud(i) for i in range(N + 1)]
 
-    for i in range(N+1):
+    for i in range(N + 1):
         graphe[i].sortant = []
         graphe[i].deja_visite = "blanc"
 
@@ -29,8 +30,8 @@ def main():
                 visite(i)
             noeud.deja_visite = "noir"
 
-
     visite(graphe[1])
     print("NON")
+
 
 main()

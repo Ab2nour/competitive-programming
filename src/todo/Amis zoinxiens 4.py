@@ -7,12 +7,12 @@ from array import array
 
 MAX_ZOINXIEN = 200000
 
-deja_vu_x = array("b", [0 for i in range(MAX_ZOINXIEN+1)])
-deja_vu_y = array("b", [0 for i in range(MAX_ZOINXIEN+1)])
-deja_vu_tentacule = array("b", [0 for i in range(MAX_ZOINXIEN+1)])
-deja_vu_age = array("b", [0 for i in range(MAX_ZOINXIEN+1)])
+deja_vu_x = array("b", [0 for i in range(MAX_ZOINXIEN + 1)])
+deja_vu_y = array("b", [0 for i in range(MAX_ZOINXIEN + 1)])
+deja_vu_tentacule = array("b", [0 for i in range(MAX_ZOINXIEN + 1)])
+deja_vu_age = array("b", [0 for i in range(MAX_ZOINXIEN + 1)])
 
-deja_vu = array("b", [0 for i in range(MAX_ZOINXIEN+1)])
+deja_vu = array("b", [0 for i in range(MAX_ZOINXIEN + 1)])
 
 zoinxiens = [0 for i in range(MAX_ZOINXIEN)]
 
@@ -21,43 +21,45 @@ zoinxiens = [0 for i in range(MAX_ZOINXIEN)]
 # exemple : propriete_age[5] est une liste qui contient tous les
 #   > zoinxiens qui ont 5 ans
 
-propriete_x = [[] for i in range(MAX_ZOINXIEN+1)]
-propriete_y = [[] for i in range(MAX_ZOINXIEN+1)]
-propriete_age = [[] for i in range(MAX_ZOINXIEN+1)]
-propriete_tentacule = [[] for i in range(MAX_ZOINXIEN+1)]
+propriete_x = [[] for i in range(MAX_ZOINXIEN + 1)]
+propriete_y = [[] for i in range(MAX_ZOINXIEN + 1)]
+propriete_age = [[] for i in range(MAX_ZOINXIEN + 1)]
+propriete_tentacule = [[] for i in range(MAX_ZOINXIEN + 1)]
 
 
 ## ---------- Fonctions ----------
 def marque_age(n):
-    """ Fonction pour marquer les cases adjacentes à l'âge (plus ou moins 5 ans). """
+    """Fonction pour marquer les cases adjacentes à l'âge (plus ou moins 5 ans)."""
     if n < 5:
         for i in range(0, (n + 1) + 5):
             deja_vu_age[i] = 1
 
     elif n > MAX_ZOINXIEN - 5:
-        for i in range(n-5, MAX_ZOINXIEN + 1):
+        for i in range(n - 5, MAX_ZOINXIEN + 1):
             deja_vu_age[i] = 1
 
     else:
-        for i in range(n-5, (n + 1) + 5):
+        for i in range(n - 5, (n + 1) + 5):
             deja_vu_age[i] = 1
 
+
 def marque_propriete_age(age, id_zox):
-    """ Idem que marque_age mais pour les propriétés. """
+    """Idem que marque_age mais pour les propriétés."""
     if age < 5:
         for i in range(0, (age + 1) + 5):
             propriete_age[i].append(id_zox)
 
     elif age > MAX_ZOINXIEN - 5:
-        for i in range(age-5, MAX_ZOINXIEN + 1):
+        for i in range(age - 5, MAX_ZOINXIEN + 1):
             propriete_age[i].append(id_zox)
 
     else:
-        for i in range(age-5, (age + 1) + 5):
+        for i in range(age - 5, (age + 1) + 5):
             propriete_age[i].append(id_zox)
 
+
 def deja_vu_zoinxien(id_zox):
-    """ Fonction pour marquer tous les attributs d'un Zoinxien comme déjà vus. """
+    """Fonction pour marquer tous les attributs d'un Zoinxien comme déjà vus."""
     x = zoinxiens[id_zox][0]
     y = zoinxiens[id_zox][1]
     tentacule = zoinxiens[id_zox][2]
@@ -69,8 +71,9 @@ def deja_vu_zoinxien(id_zox):
     marque_age(age)
     deja_vu[id_zox] = 1
 
+
 def est_ami(id_zox):
-    """ Fonction pour savoir si un Zoinxien est ami, selon les données actuelles. """
+    """Fonction pour savoir si un Zoinxien est ami, selon les données actuelles."""
     x = zoinxiens[id_zox][0]
     y = zoinxiens[id_zox][1]
     tentacule = zoinxiens[id_zox][2]
@@ -81,8 +84,9 @@ def est_ami(id_zox):
     else:
         return False
 
+
 def rajoute_amis(id_zox):
-    """ Rajoute les amis d'un zoinxien à la pile de parcours. """
+    """Rajoute les amis d'un zoinxien à la pile de parcours."""
     x = zoinxiens[id_zox][0]
     y = zoinxiens[id_zox][1]
     tentacule = zoinxiens[id_zox][2]
@@ -142,4 +146,3 @@ while pile:
 
 
 print(nb_amis)
-

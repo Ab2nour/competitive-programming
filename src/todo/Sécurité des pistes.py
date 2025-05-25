@@ -12,16 +12,18 @@
 # ax + b = y
 # y = a*x + b
 
+
 def croisement(a, b, m, p):
-    x = (p-b)/(a-m)
-    y = a*x + b
+    x = (p - b) / (a - m)
+    y = a * x + b
     return (x, y)
+
 
 def coeff_droite(x1, y1, x2, y2):
     if x1 == x2:
         x1 += 0.000001
-    a = (y1-y2)/(x1-x2)
-    b = y1 - a*x1
+    a = (y1 - y2) / (x1 - x2)
+    b = y1 - a * x1
     return (a, b)
 
 

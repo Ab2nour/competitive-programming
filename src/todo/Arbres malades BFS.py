@@ -9,13 +9,13 @@ n, m = map(int, input().split())
 arbres = [[] for i in range(n)]
 arbres_a_cote = [[] for i in range(n)]
 deja_visite = [False for i in range(n)]
-nb_arbres_contamines = [-1 for i in range(n)] # on stocke les résultats
-                                # si on demande plusieurs fois le même arbre
+nb_arbres_contamines = [-1 for i in range(n)]  # on stocke les résultats
+# si on demande plusieurs fois le même arbre
 
 
 ### Fonctions
 def distance(x1, y1, x2, y2):
-    return (x2-x1)**2 + (y2-y1)**2
+    return (x2 - x1) ** 2 + (y2 - y1) ** 2
 
 
 ### Traitement des données
@@ -26,7 +26,7 @@ for i in range(n):
 for i in range(n):
     x1, y1, r = arbres[i]
     for j in range(n):
-        x2, y2, _ = arbres[j] # "_" est ignoré
+        x2, y2, _ = arbres[j]  # "_" est ignoré
         if i != j and distance(x1, y1, x2, y2) <= r:
             arbres_a_cote[i].append(j)
 

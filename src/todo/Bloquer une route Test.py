@@ -18,12 +18,16 @@ entree = """12 15
 entree = entree.split("\n")
 
 index = 0
+
+
 def readline():
     global index, entree
     index += 1
-    return entree[index-1]
+    return entree[index - 1]
+
 
 import sys
+
 sys.setrecursionlimit(10**4)
 sys.stdin.readline = readline
 input = readline
@@ -31,13 +35,13 @@ input = readline
 ### copier en-dessous
 n, a = map(int, input().split())
 
-noeuds = [i for i in range(n+1)]
-entrant = [[] for i in range(n+1)]
-sortant = [[] for i in range(n+1)]
-indispensable = [[] for i in range(n+1)]
-deja_visite = [[] for i in range(n+1)]
+noeuds = [i for i in range(n + 1)]
+entrant = [[] for i in range(n + 1)]
+sortant = [[] for i in range(n + 1)]
+indispensable = [[] for i in range(n + 1)]
+deja_visite = [[] for i in range(n + 1)]
 
-profondeur = [0 for i in range(n+1)]
+profondeur = [0 for i in range(n + 1)]
 noeuds_en_visite = []
 
 
@@ -57,7 +61,7 @@ for i in range(a):
 
 def parcours(noeud, p, noeud_avant):
     print("noeud", noeud, "profondeur", p)
-    if profondeur[noeud] > 0: # déjà visité
+    if profondeur[noeud] > 0:  # déjà visité
         for i in noeuds_en_visite:
             if profondeur[i] > profondeur[noeud]:
                 for j in range(len(indispensable[i])):
@@ -71,9 +75,10 @@ def parcours(noeud, p, noeud_avant):
 
         for i in sortant[noeud]:
             if i != noeud_avant:
-                parcours(i, p+1, noeud)
+                parcours(i, p + 1, noeud)
 
         profondeur[noeud] = 0
         noeuds_en_visite.pop()
+
 
 parcours(1, 1, 0)

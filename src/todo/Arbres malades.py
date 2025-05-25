@@ -1,4 +1,5 @@
 import sys
+
 sys.setrecursionlimit(10**8)
 
 
@@ -12,7 +13,8 @@ deja_visite = [False for i in range(n)]
 
 ### Fonctions
 def distance(x1, y1, x2, y2):
-    return (x2-x1)**2 + (y2-y1)**2
+    return (x2 - x1) ** 2 + (y2 - y1) ** 2
+
 
 def explore(noeud):
     global compteur
@@ -23,7 +25,7 @@ def explore(noeud):
     for k in range(len(arbres_a_cote[noeud])):
         if not deja_visite[arbres_a_cote[noeud][k]]:
             explore(arbres_a_cote[noeud][k])
-    #deja_visite[noeud] = False
+    # deja_visite[noeud] = False
 
 
 ### Traitement des données
@@ -34,7 +36,7 @@ for i in range(n):
 for i in range(n):
     x1, y1, r = arbres[i]
     for j in range(n):
-        x2, y2, _ = arbres[j] # "_" est ignoré
+        x2, y2, _ = arbres[j]  # "_" est ignoré
         if distance(x1, y1, x2, y2) <= r:
             arbres_a_cote[i].append(j)
 

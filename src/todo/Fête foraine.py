@@ -14,7 +14,10 @@ index_meilleur_lot = 0
 for i in range(nb_cibles):
     cible_actuelle = gain_cibles[i]
 
-    while index_meilleur_lot <= nb_lots and cible_actuelle >= valeur_lots[index_meilleur_lot]:
+    while (
+        index_meilleur_lot <= nb_lots
+        and cible_actuelle >= valeur_lots[index_meilleur_lot]
+    ):
         index_meilleur_lot += 1
 
-    sys.stdout.write("%d " %valeur_lots[index_meilleur_lot-1])
+    sys.stdout.write("%d " % valeur_lots[index_meilleur_lot - 1])

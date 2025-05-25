@@ -65,12 +65,16 @@ entree = """5 36
 entree = entree.split("\n")
 
 index = 0
+
+
 def readline():
     global index, entree
     index += 1
-    return entree[index-1]
+    return entree[index - 1]
+
 
 import sys
+
 sys.setrecursionlimit(10**4)
 sys.stdin.readline = readline
 input = readline
@@ -78,6 +82,7 @@ input = readline
 ### copier en-dessous
 import sys
 from collections import deque
+
 sys.setrecursionlimit(10**8)
 n, m = map(int, input().split())
 
@@ -86,13 +91,13 @@ n, m = map(int, input().split())
 arbres = [[] for i in range(n)]
 arbres_a_cote = [[] for i in range(n)]
 deja_visite = [0 for i in range(n)]
-nb_arbres_contamines = [-1 for i in range(n)] # on stocke les résultats
-                                # si on demande plusieurs fois le même arbre
+nb_arbres_contamines = [-1 for i in range(n)]  # on stocke les résultats
+# si on demande plusieurs fois le même arbre
 
 
 ### Fonctions
 def distance(x1, y1, x2, y2):
-    return (x2-x1)**2 + (y2-y1)**2
+    return (x2 - x1) ** 2 + (y2 - y1) ** 2
 
 
 ### Traitement des données
@@ -103,7 +108,7 @@ for i in range(n):
 for i in range(n):
     x1, y1, r = arbres[i]
     for j in range(n):
-        x2, y2, _ = arbres[j] # "_" est ignoré
+        x2, y2, _ = arbres[j]  # "_" est ignoré
         if distance(x1, y1, x2, y2) <= r:
             arbres_a_cote[i].append(j)
 

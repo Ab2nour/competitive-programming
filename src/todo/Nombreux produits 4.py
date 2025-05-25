@@ -1,13 +1,14 @@
 def main():
     from collections import deque
     import sys
+
     readline = sys.stdin.readline
     write = sys.stdout.write
 
     nb_distributeurs = int(readline())
     nb_operations = int(readline())
 
-    files = [deque() for i in range(nb_distributeurs+1)]
+    files = [deque() for i in range(nb_distributeurs + 1)]
 
     for i in range(nb_operations):
         num_distribteur, qtite, date = map(int, readline().split())
@@ -28,19 +29,19 @@ def main():
         else:
             files[num_distribteur].append([date, qtite])
 
-
     for i in range(1, len(files)):
         minimum = 100000000
 
         popleft = files[i].popleft
-        for j in range(len(files[i])): #todo décommenter la ligne dessous !   v
+        for j in range(len(files[i])):  # todo décommenter la ligne dessous !   v
             tete_file = popleft()[0]
-            if tete_file < minimum:# and files[i][j] > 0:              (ici)
-                minimum = tete_file # l'indice zéro c'est la date
+            if tete_file < minimum:  # and files[i][j] > 0:              (ici)
+                minimum = tete_file  # l'indice zéro c'est la date
 
         if minimum == 100000000:
-            write("%d\n" %0)
+            write("%d\n" % 0)
         else:
-            write("%d\n" %minimum)
+            write("%d\n" % minimum)
+
 
 main()

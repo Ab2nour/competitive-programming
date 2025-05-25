@@ -18,12 +18,16 @@ entree = """12 15
 entree = entree.split("\n")
 
 index = 0
+
+
 def readline():
     global index, entree
     index += 1
-    return entree[index-1]
+    return entree[index - 1]
+
 
 import sys
+
 sys.setrecursionlimit(10**4)
 sys.stdin.readline = readline
 input = readline
@@ -39,8 +43,8 @@ deja_vu = [False for i in range(nb_aretes)]
 
 indispensable = [True for i in range(nb_aretes)]
 
-voisins = [[] for i in range(nb_noeuds+1)]
-profondeur = [-1 for i in range(nb_noeuds+1)]
+voisins = [[] for i in range(nb_noeuds + 1)]
+profondeur = [-1 for i in range(nb_noeuds + 1)]
 
 
 for i in range(nb_aretes):
@@ -63,14 +67,12 @@ def profondeur_min(noeud, prof):
         if not deja_vu[id_arete]:
             deja_vu[id_arete] = True
 
-            prof_trouvee = profondeur_min(i, prof+1)
+            prof_trouvee = profondeur_min(i, prof + 1)
             prof_min = min(prof_min, prof_trouvee)
 
             indispensable[id_arete] = prof_trouvee > prof
 
-
     return prof_min
-
 
 
 ## ---------- Affichage ----------

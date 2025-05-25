@@ -12,18 +12,24 @@ entree = """10
 entree = entree.split("\n")
 
 index = 0
+
+
 def readline():
     global index, entree
     index += 1
-    return entree[index-1]
+    return entree[index - 1]
+
 
 import sys
+
 sys.stdin.readline = readline
 input = readline
+
 
 ### copier en-dessous
 def main():
     import sys
+
     sys.setrecursionlimit(10**9)
     from collections import deque
 
@@ -35,19 +41,17 @@ def main():
     branche_plus_longue = [0 for i in range(n)]
 
     compteur = [0 for i in range(n)]
-    deja_visite = [0 for i in range(n)] # 0, 1, 2 => blanc, gris, noir
+    deja_visite = [0 for i in range(n)]  # 0, 1, 2 => blanc, gris, noir
     noeuds_visites = deque()
 
-    minimum = 10**5+1
-
+    minimum = 10**5 + 1
 
     ## Construction de l'arbre
-    for i in range(n-1):
+    for i in range(n - 1):
         a, b = map(int, readline().split())
 
         sortant[a].append(b)
         sortant[b].append(a)
-
 
     ## Fonctions
     def explore(noeud):
@@ -76,25 +80,24 @@ def main():
                 minimum = min(minimum, branche_plus_longue[k])
                 maxi = max(compteur[noeud], maxi)
 
-
         print("roger", noeuds_visites)
 
         branche_plus_longue[noeud] = maxi
         noeuds_visites.pop()
 
-
     ## Programme
     explore(0)
 
     print(minimum)
-    #print(compteur)
+    # print(compteur)
 
-    #todo 1) rajouter l'optimisation pour les feuilles, et les noeuds avec 2 arêtes
-    #todo FAIT 2) coder en itératif plutôt que récursif
-    #todo 3) pour le "compteur[j] += 1", plutôt que d'incrémenter de 1 en 1,
-            #todo       > tout incrémenter d'un coup !!!
+    # todo 1) rajouter l'optimisation pour les feuilles, et les noeuds avec 2 arêtes
+    # todo FAIT 2) coder en itératif plutôt que récursif
+    # todo 3) pour le "compteur[j] += 1", plutôt que d'incrémenter de 1 en 1,
+    # todo       > tout incrémenter d'un coup !!!
 
-    #todo bug) la 1ère case "branche_plus_longue" vaut 18 pour l'exemple de test ????
-            #todo => à cause de l'opti du todo 1
+    # todo bug) la 1ère case "branche_plus_longue" vaut 18 pour l'exemple de test ????
+    # todo => à cause de l'opti du todo 1
+
 
 main()

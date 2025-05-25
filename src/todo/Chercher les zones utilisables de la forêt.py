@@ -1,12 +1,15 @@
 import sys
+
 sys.setrecursionlimit(10**9)
 
 N, A = map(int, input().split())
 zones = 0
-intersections = [1 for i in range(N)] # nb d'intersections pour chaque zone (max N zones)
+intersections = [
+    1 for i in range(N)
+]  # nb d'intersections pour chaque zone (max N zones)
 
-graphe = [[] for i in range(N+1)]
-deja_visite = [False for i in range(N+1)]
+graphe = [[] for i in range(N + 1)]
+deja_visite = [False for i in range(N + 1)]
 
 for i in range(A):
     a, b, non_utilise = map(int, input().split())

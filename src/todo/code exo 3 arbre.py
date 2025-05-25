@@ -5,7 +5,7 @@ class Noeud:
         self.deja_visite = deja_visite
 
     def __repr__(self):
-        #return "Noeud " + self.nom
+        # return "Noeud " + self.nom
         return str(self.nom)
 
     def to_the_top(self, autre_noeud):
@@ -29,18 +29,19 @@ class Noeud:
 
         return autre_noeud
 
+
 N = int(input())
 liste_pour_noeuds = list(map(int, "3 3 7 3 6 7 0 0".split()))
 liste_pour_noeuds = list(map(int, input().split()))
-#liste_pour_noeuds = [8, 8, 10, 1, 8, 2, 4, 10, 0, 9]
+# liste_pour_noeuds = [8, 8, 10, 1, 8, 2, 4, 10, 0, 9]
 
 R = int(input())
 
 ## Création de l'arbre à partir des données
-noeuds = [Noeud(i+1) for i in range(N)]
+noeuds = [Noeud(i + 1) for i in range(N)]
 
 for i in range(N):
-    indice = liste_pour_noeuds[i]-1
+    indice = liste_pour_noeuds[i] - 1
 
     if indice >= 0:
         noeuds[i].pere = noeuds[indice]
@@ -48,7 +49,7 @@ for i in range(N):
 
 for i in range(R):
     noeud1, noeud2 = map(int, input().split())
-    noeud1, noeud2 = noeuds[noeud1-1], noeuds[noeud2-1]
+    noeud1, noeud2 = noeuds[noeud1 - 1], noeuds[noeud2 - 1]
 
     a = noeud1.to_the_top(noeud2)
 

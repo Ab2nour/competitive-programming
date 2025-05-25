@@ -23,12 +23,16 @@ entree = """12 20
 entree = entree.split("\n")
 
 index = 0
+
+
 def readline():
     global index, entree
     index += 1
-    return entree[index-1]
+    return entree[index - 1]
+
 
 import sys
+
 sys.stdin.readline = readline
 input = readline
 
@@ -38,13 +42,13 @@ import sys
 ## Données
 nb_sommets, nb_aretes = map(int, input().split())
 
-voisins = [[] for i in range(nb_sommets+1)]
-deja_vu_sommet = [0 for i in range(nb_sommets+1)] # pour les sommets
+voisins = [[] for i in range(nb_sommets + 1)]
+deja_vu_sommet = [0 for i in range(nb_sommets + 1)]  # pour les sommets
 
 nb_sommets_a_voir = nb_sommets
 
 aretes = []
-deja_vu_arete = [False for i in range(nb_aretes)] # pour les arêtes
+deja_vu_arete = [False for i in range(nb_aretes)]  # pour les arêtes
 
 chemin = []
 chemin_en_cours = []
@@ -54,21 +58,21 @@ deuxieme_passage = False
 
 ## Fonctions
 def noeud_non_libre(n):
-    """ Détermine si le noeud n est non libre, c'est-à-dire s'il ne lui reste
-        plus d'arêtes non visitées.
-        Donc on a vu ce sommet autant de fois qu'il a d'arêtes. """
+    """Détermine si le noeud n est non libre, c'est-à-dire s'il ne lui reste
+    plus d'arêtes non visitées.
+    Donc on a vu ce sommet autant de fois qu'il a d'arêtes."""
     return deja_vu_sommet[n] == len(voisins[n])
+
 
 def parcours(n):
     global nb_sommets_a_voir, deuxieme_passage
-    #print(n)
+    # print(n)
 
     chemin_en_cours.append(n)
 
-
     # n est le noeud de départ
     if n == noeud_depart:
-        if deuxieme_passage: # on est revenu au point de départ yes !
+        if deuxieme_passage:  # on est revenu au point de départ yes !
             if noeud_non_libre(n):
                 nb_sommets_a_voir -= 1
 
@@ -77,12 +81,10 @@ def parcours(n):
         else:
             deuxieme_passage = True
 
-
     # parcours des voisins
     for i in range(len(voisins[n])):
         voisin = voisins[n][i][0]
         arete = voisins[n][i][1]
-
 
         if not deja_vu_arete[arete]:
             deja_vu_arete[arete] = True
@@ -97,8 +99,6 @@ def parcours(n):
         nb_sommets_a_voir -= 1
 
     return
-
-
 
 
 for i in range(nb_aretes):
@@ -126,17 +126,21 @@ chemin.append(1)
 noeud_a_explorer = 1
 pos_noeud = 0
 
-while nb_sommets_a_voir > 0: # WHILE 1 : tant qu'il y a des sommets libres
+while nb_sommets_a_voir > 0:  # WHILE 1 : tant qu'il y a des sommets libres
     deuxieme_passage = False
     parcours(noeud_depart)
 
-    #chemin = chemin[:pos_noeud] + chemin_en_cours + chemin[pos_noeud+1:]
-    chemin = [chemin[i] for i in range(pos_noeud)] + chemin_en_cours + [chemin[i] for i in range(pos_noeud+1, len(chemin))]
+    # chemin = chemin[:pos_noeud] + chemin_en_cours + chemin[pos_noeud+1:]
+    chemin = (
+        [chemin[i] for i in range(pos_noeud)]
+        + chemin_en_cours
+        + [chemin[i] for i in range(pos_noeud + 1, len(chemin))]
+    )
 
     chemin_en_cours = []
     # mettre à jour le noeud de départ (le prendre dans le chemin)
     while pos_noeud < len(chemin):
-        if not noeud_non_libre(chemin[pos_noeud]): # le noeud est libre
+        if not noeud_non_libre(chemin[pos_noeud]):  # le noeud est libre
             noeud_depart = chemin[pos_noeud]
             break
 
@@ -145,11 +149,3 @@ while nb_sommets_a_voir > 0: # WHILE 1 : tant qu'il y a des sommets libres
 
 for i in chemin:
     print(i, end=" ")
-
-
-
-
-
-
-
-

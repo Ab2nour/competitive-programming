@@ -54,4 +54,3 @@ tempsMinB = tempsMin(tempsA, machinesB)
 ### Affichage
 print(tempsMinA)
 print(tempsMinB)
-

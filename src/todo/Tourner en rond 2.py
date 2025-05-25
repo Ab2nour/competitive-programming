@@ -1,7 +1,9 @@
 import sys
+
 sys.setrecursionlimit(10**9)
 
 N, A = map(int, input().split())
+
 
 class Noeud:
     def __init__(self, nom):
@@ -10,9 +12,10 @@ class Noeud:
     def __repr__(self):
         return str(self.nom)
 
-graphe = [Noeud(i) for i in range(N+1)]
 
-for i in range(N+1):
+graphe = [Noeud(i) for i in range(N + 1)]
+
+for i in range(N + 1):
     graphe[i].sortant = []
     graphe[i].deja_visite = False
 

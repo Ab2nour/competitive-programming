@@ -1,6 +1,6 @@
 base, N1, N2 = map(int, input().split())
 
-max_taille = max(N1, N2)+1
+max_taille = max(N1, N2) + 1
 
 retenues = [0 for i in range(max_taille)]
 
@@ -26,10 +26,9 @@ if N2 == N1:
             break
 
 
-
 # rajout de zéros pour la bonne taille
-nb1 = [0 for i in range(max_taille-len(nb1))] + nb1
-nb2 = [0 for i in range(max_taille-len(nb2))] + nb2
+nb1 = [0 for i in range(max_taille - len(nb1))] + nb1
+nb2 = [0 for i in range(max_taille - len(nb2))] + nb2
 
 # calcul
 for i in range(1, max_taille):
@@ -37,11 +36,11 @@ for i in range(1, max_taille):
         soustraction = nb1[-i] - nb2[-i] + retenues[-i]
     else:
         soustraction = nb1[-i] + base - nb2[-i] + retenues[-i]
-        retenues[-i-1] -= 1
+        retenues[-i - 1] -= 1
 
     if soustraction < 0:
         resultat[-i] = base + soustraction
-        retenues[-i-1] -= 1
+        retenues[-i - 1] -= 1
     else:
         resultat[-i] = soustraction
 
@@ -52,9 +51,8 @@ if negatif:
 # si le 1er chiffre est un zéro on ne l'affiche pas
 # (attention au résultat nul (égal à zéro) )
 compteur = 0
-while resultat[compteur] == 0 and compteur < len(resultat)-1:
+while resultat[compteur] == 0 and compteur < len(resultat) - 1:
     compteur += 1
 
 for i in range(compteur, len(resultat)):
     print(resultat[i], end=" ")
-

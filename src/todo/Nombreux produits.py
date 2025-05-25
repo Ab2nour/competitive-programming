@@ -2,21 +2,20 @@ nb_distributeurs = int(input())
 nb_operations = int(input())
 
 
-
-files = [[0 for i in range(1000)] for i in range(nb_distributeurs+1)]
-indice_debut = [0 for i in range(nb_distributeurs+1)]
-indice_fin = [0 for i in range(nb_distributeurs+1)]
+files = [[0 for i in range(1000)] for i in range(nb_distributeurs + 1)]
+indice_debut = [0 for i in range(nb_distributeurs + 1)]
+indice_fin = [0 for i in range(nb_distributeurs + 1)]
 
 for i in range(nb_operations):
     num_distribteur, qtite, date = map(int, input().split())
 
     if qtite > 0:
         for j in range(qtite):
-            files[num_distribteur][indice_fin[num_distribteur]%1000] = date
+            files[num_distribteur][indice_fin[num_distribteur] % 1000] = date
             indice_fin[num_distribteur] += 1
     else:
         for j in range(-qtite):
-            files[num_distribteur][indice_debut[num_distribteur]%1000] = 0
+            files[num_distribteur][indice_debut[num_distribteur] % 1000] = 0
             indice_debut[num_distribteur] += 1
 
 for i in range(1, len(files)):

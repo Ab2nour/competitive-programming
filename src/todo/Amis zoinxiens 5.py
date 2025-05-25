@@ -8,36 +8,37 @@ from collections import deque
 
 MAX_ZOINXIEN = 200000
 
-deja_vu_x = [[0] for i in range(MAX_ZOINXIEN+1)]
-deja_vu_y = [[0] for i in range(MAX_ZOINXIEN+1)]
-deja_vu_tentacule = [[0] for i in range(MAX_ZOINXIEN+1)]
-deja_vu_age = [[0] for i in range(MAX_ZOINXIEN+1)]
+deja_vu_x = [[0] for i in range(MAX_ZOINXIEN + 1)]
+deja_vu_y = [[0] for i in range(MAX_ZOINXIEN + 1)]
+deja_vu_tentacule = [[0] for i in range(MAX_ZOINXIEN + 1)]
+deja_vu_age = [[0] for i in range(MAX_ZOINXIEN + 1)]
 
-deja_vu = array("b", [0 for i in range(MAX_ZOINXIEN+1)])
+deja_vu = array("b", [0 for i in range(MAX_ZOINXIEN + 1)])
 
 zoinxiens = [0 for i in range(MAX_ZOINXIEN)]
 
 
 ## ---------- Fonctions ----------
 def marque_age(age, id_zox):
-    """ Idem que marque_age mais pour les propriétés. """
+    """Idem que marque_age mais pour les propriétés."""
     if age < 5:
         for i in range(0, (age + 1) + 5):
             deja_vu_age[i].append(id_zox)
             deja_vu_age[i][0] = 1
 
     elif age > MAX_ZOINXIEN - 5:
-        for i in range(age-5, MAX_ZOINXIEN + 1):
+        for i in range(age - 5, MAX_ZOINXIEN + 1):
             deja_vu_age[i].append(id_zox)
             deja_vu_age[i][0] = 1
 
     else:
-        for i in range(age-5, (age + 1) + 5):
+        for i in range(age - 5, (age + 1) + 5):
             deja_vu_age[i].append(id_zox)
             deja_vu_age[i][0] = 1
 
+
 def deja_vu_zoinxien(id_zox):
-    """ Fonction pour marquer tous les attributs d'un Zoinxien comme déjà vus. """
+    """Fonction pour marquer tous les attributs d'un Zoinxien comme déjà vus."""
     x = zoinxiens[id_zox][0]
     y = zoinxiens[id_zox][1]
     tentacule = zoinxiens[id_zox][2]
@@ -54,20 +55,27 @@ def deja_vu_zoinxien(id_zox):
     marque_age(age, id_zox)
     deja_vu[id_zox] = 1
 
+
 def est_ami(id_zox):
-    """ Fonction pour savoir si un Zoinxien est ami, selon les données actuelles. """
+    """Fonction pour savoir si un Zoinxien est ami, selon les données actuelles."""
     x = zoinxiens[id_zox][0]
     y = zoinxiens[id_zox][1]
     tentacule = zoinxiens[id_zox][2]
     age = zoinxiens[id_zox][3]
 
-    if deja_vu_x[x][0] or deja_vu_y[y][0] or deja_vu_tentacule[tentacule][0] or deja_vu_age[age][0]:
+    if (
+        deja_vu_x[x][0]
+        or deja_vu_y[y][0]
+        or deja_vu_tentacule[tentacule][0]
+        or deja_vu_age[age][0]
+    ):
         return True
     else:
         return False
 
+
 def rajoute_amis(id_zox):
-    """ Rajoute les amis d'un zoinxien à la file de parcours. """
+    """Rajoute les amis d'un zoinxien à la file de parcours."""
     x = zoinxiens[id_zox][0]
     y = zoinxiens[id_zox][1]
     tentacule = zoinxiens[id_zox][2]
@@ -126,4 +134,3 @@ while file:
 
 
 print(nb_amis)
-

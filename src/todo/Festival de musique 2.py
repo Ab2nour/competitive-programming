@@ -1,28 +1,28 @@
 def main():
     import sys
-    readline = sys.stdin.readline
 
+    readline = sys.stdin.readline
 
     ## Traitement données
     nb_jours, nb_groupes = map(int, readline().split())
     festival = list(map(int, readline().split()))
 
-
     ## Variables
-    groupes_presents = [-1 for i in range(nb_groupes+1)]
-    groupes_presents[0] = 0 # la case 0 est un compteur du nombre de groupes présents
-        # la case i indique si le groupe i est présent
+    groupes_presents = [-1 for i in range(nb_groupes + 1)]
+    groupes_presents[0] = 0  # la case 0 est un compteur du nombre de groupes présents
+    # la case i indique si le groupe i est présent
     intervalle_max = nb_jours
-        # pas besoin de tester un intervalle plus grand que le max qu'on a trouvé
+    # pas besoin de tester un intervalle plus grand que le max qu'on a trouvé
 
     i = 0
     intervalle_actif = 0
     somme_i_ia = i + intervalle_actif
 
-
     ## Programme
-    while somme_i_ia < nb_jours: # parcours de chaque case de festival
-        if i+1 < nb_jours and festival[i] != festival[i+1]: # si la case d'après est identique, on la passe
+    while somme_i_ia < nb_jours:  # parcours de chaque case de festival
+        if (
+            i + 1 < nb_jours and festival[i] != festival[i + 1]
+        ):  # si la case d'après est identique, on la passe
             while intervalle_actif < intervalle_max and somme_i_ia < nb_jours:
                 if groupes_presents[festival[somme_i_ia]] < i:
                     groupes_presents[0] += 1
@@ -39,13 +39,13 @@ def main():
         groupes_presents[0] = 0
 
         if i + intervalle_actif <= nb_jours and intervalle_max >= nb_groupes:
-            intervalle_actif = 0 # ou 1 ?
+            intervalle_actif = 0  # ou 1 ?
             somme_i_ia = i
-        else: # on s'arrête si on a trouvé le max possible ou que ça sera impossible
+        else:  # on s'arrête si on a trouvé le max possible ou que ça sera impossible
             break
 
-
     ## Affichage réponse
-    print(intervalle_max+1)
+    print(intervalle_max + 1)
+
 
 main()

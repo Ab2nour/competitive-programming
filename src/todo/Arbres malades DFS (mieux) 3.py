@@ -5,26 +5,23 @@ def main():
 
     sys.setrecursionlimit(10**8)
 
-
     ### Variables
     n, m = map(int, input().split())
 
-    arbres = [[] for i in range(n)] # noeud
-    arbres_a_cote = [deque(maxlen=200) for i in range(n)] # arêtes
+    arbres = [[] for i in range(n)]  # noeud
+    arbres_a_cote = [deque(maxlen=200) for i in range(n)]  # arêtes
 
     deja_visite = [False for i in range(n)]
 
-    nb_arbres_contamines = array("i", [-1 for i in range(n)]) # on stocke les résultats
-                                    # si on demande plusieurs fois le même arbre
-
-
+    nb_arbres_contamines = array("i", [-1 for i in range(n)])  # on stocke les résultats
+    # si on demande plusieurs fois le même arbre
 
     ### Fonctions
     def distance(x1, y1, x2, y2):
-        return (x2-x1)**2 + (y2-y1)**2
+        return (x2 - x1) ** 2 + (y2 - y1) ** 2
 
     def explore(noeud):
-        nonlocal compteur, deja_visite, arbre_a_test, en_exploration, cycle_trouve # variables globales, à l'intérieur du main()
+        nonlocal compteur, deja_visite, arbre_a_test, en_exploration, cycle_trouve  # variables globales, à l'intérieur du main()
 
         deja_visite[noeud] = True
         compteur += 1
@@ -38,7 +35,6 @@ def main():
                 en_exploration.append(arbres_a_cote[noeud][k])
                 explore(arbres_a_cote[noeud][k])
 
-
     ### Traitement des données
     for i in range(n):
         x, y, r = map(int, sys.stdin.readline().split())
@@ -49,10 +45,9 @@ def main():
         x1, y1, r = arbres[i]
 
         for j in range(n):
-            x2, y2, _ = arbres[j] # "_" est ignoré
+            x2, y2, _ = arbres[j]  # "_" est ignoré
             if i != j and distance(x1, y1, x2, y2) <= r:
                 arbres_a_cote[i].append(j)
-
 
     ### Programme
     for i in range(m):
@@ -61,17 +56,17 @@ def main():
 
         if nb_arbres_contamines[arbre_a_test] == -1:
             cycle_trouve = False
-            en_exploration = deque(maxlen=200) # va servir pour les cycles
+            en_exploration = deque(maxlen=200)  # va servir pour les cycles
             explore(arbre_a_test)
 
             deja_visite = [False for i in range(n)]
             nb_arbres_contamines[arbre_a_test] = compteur
 
-
             for r in arbres_a_cote[arbre_a_test]:
                 if arbre_a_test in arbres_a_cote[r]:
                     nb_arbres_contamines[r] = compteur
 
-        sys.stdout.write("%s\n" %(nb_arbres_contamines[arbre_a_test]))
+        sys.stdout.write("%s\n" % (nb_arbres_contamines[arbre_a_test]))
+
 
 main()

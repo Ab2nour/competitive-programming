@@ -25,7 +25,6 @@ class File:
 
         return valeur
 
-
     def append(self, element):
         if self.vide():
             self.tete = element
@@ -34,6 +33,7 @@ class File:
             self.queue.suivant = element
             element.precedent = self.queue
             self.queue = element
+
 
 class Maillon:
     def __init__(self, valeur, suivant=None, precedent=None):
@@ -45,7 +45,7 @@ class Maillon:
 nb_distributeurs = int(input())
 nb_operations = int(input())
 
-files = [File() for i in range(nb_distributeurs+1)]
+files = [File() for i in range(nb_distributeurs + 1)]
 
 for i in range(nb_operations):
     num_distribteur, qtite, date = map(int, input().split())
@@ -59,7 +59,7 @@ for i in range(nb_operations):
 
 for i in range(1, len(files)):
     minimum = 100000000
-    #for j in range(len(files[i])):
+    # for j in range(len(files[i])):
     while not files[i].vide():
         a = files[i].popleft()
         if a < minimum and a > 0:
